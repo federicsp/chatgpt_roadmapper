@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>RoadMapper</title>
+      <link rel="shortcut icon" href="/logo">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+        <link rel="stylesheet" href="/css">
+  </head>
+
+    <body style="background-color:#577e89;font-size:22px; font-family: Montserrat, sans-serif" >
+  {% if len_words < 2 %} Le seguenti sono alcune parole chiave per {{word1}}:{% endif %}
+  {% if len_words < 7 %} {{words[-1]}},  {% endif %}
+  {% if len_words > 7 or from_mongo%}
+    <hr style="border-top: 2px solid #ccc">
+  <div class="containermain">
+
+    {% include "form_it_hide.html" %}
+    <div class="container">
+      <div class="row justify-content-center">
+          <div class="col-md-6 text-center">
+
+            <h1 style="color: black; font-size: 20px; font-weight: bold; text-align: center; margin-top: 20px; text-shadow: 1px 1px #b3b3ad;">
+              <a href="/it"><img src="/logo" width="30" height="30" alt="Centered Image"></a>RoadMapper è uno strumento che ti aiuta a trovare il miglior percorso per imparare qualsiasi cosa. <div style="background-color:#d56345">  {{word1}}: </div>
+            <div style="background-color:#d56345">  {{word1_description}} </div></h1>
+          </div>
+
+        </div>
+    </div>
+    <hr style="border-top: 2px solid #ccc">
+
+
+
+  <div class="image-container">
+    <img src="/road" alt="Responsive Image"  width="1900">
+    {% for wor,desc,left,top in zippone %}
+        <div data-tooltip="{{wor}}: {{desc}}">
+          <div class="card"
+               style="position: absolute; left: {{left}}%; top: {{top}}%; transform: translate(-50%, -50%); background-color:#00adb5;"
+               onClick="fillForm('{{prev_text+wor}}', '{{desc}}');">
+            <h3>{{wor}}</h3>  </div></div>
+    {% endfor %}
+
+
+    </div>
+
+    <hr style="border-top: 2px solid #ccc">
+
+
+    {% include "footer.html" %}
+    {% endif %}
+
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNS3hpf" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script>
+    function fillForm(word1, word2) {
+      document.getElementById('word1').value = word1;
+      document.getElementById('word2').value = word2;
+      document.querySelector('form').submit();
+    }
+    </script>
+
+  </div>
+    </body>
+</html>

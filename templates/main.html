@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset="utf-8">
+      <title>Roadmapper</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+      <link rel="shortcut icon" href="/logo">
+      <link rel="stylesheet" href="/css">
+   </head>
+   <body style="background-color:#577e89;font-size:22px; font-family: Montserrat, sans-serif">
+      <div class="language-switcher">
+         <a href="/it" title="Italian">
+         <img src="/it_logo" width="40"  alt="Italian"> Switch to Italian
+         </a>
+      </div>
+      <div class="container">
+         <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+               <img src="logo"  width="120" height="120" alt="Immagine centrata">
+            </div>
+         </div>
+      </div>
+      <div>
+         <div>
+            <div>
+               <h1 style="color: black; text-align: center; font-size: 25px; font-weight: bold; margin-top: 20px; text-shadow: 1px 1px #b3b3ad;">
+                  RoadMapper is a tool that helps you find the best path to learn everything
+               </h1>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div class="row justify-content-center">
+            <div class="col-md-6 text-center">
+               <h2 style="color: black; font-size: 25px; font-weight: bold; text-align: center; margin-top: 20px; text-shadow: 1px 1px #b3b3ad;background-color:#d56345">Insert below two phrases to start</h2>
+            </div>
+         </div>
+      </div>
+      <div class="container mt-5">
+         {% include "form_en.html" %}
+      </div>
+      <hr style="border-top: 2px solid #ccc">
+      <div class="container" style="display: {{hide}}">
+         <div>
+            <div>
+               <hr>
+               <div>
+                  <div style="background-color:#a4cfbe" class="text-center">
+                     <p>Some popular roadmaps:</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            {% for item in items %}
+            {% if item in items[0:2] %}
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" style = "background-color: #00adb5" onclick = "fillForm ('{{item}}', 'nothing')"> {{item}} </a>
+            </div>
+            {% else %}
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('{{item}}', 'nothing')"> {{item}} </a>
+            </div>
+            {% endif %}
+            {% endfor%}
+         </div>
+      </div>
+      {% if cookie_words %}
+      <div class="container">
+         <div>
+            <div>
+               <hr>
+               <div>
+                  <div style="background-color:#a4cfbe" class="text-center">
+                     <p>Some roadmaps that you have searched:</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class = "row">
+            {% for item in cookie_words %}
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('{{item}}', 'nothing')"> {{item}} </a>
+            </div>
+            {% endfor%}
+         </div>
+      </div>
+      {% endif %}
+      <div class="container">
+         <div>
+            <div>
+               <hr>
+               <div>
+                  <div style="background-color:#a4cfbe" class="text-center">
+                     <p>Some popular roadmaps (coding):</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class = "row">
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" style = "background-color: #00adb5" onclick = "fillForm ('python', 'nothing')" style = "background-color: # 00adb5"> Python </a>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('backend', 'nothing')"> Backend </a>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('devops', 'nothing')"> DevOps </a>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('javascript', 'nothing')"> Javascript </a>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('machine-learning', 'nothing')"> Machine Learning </a>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('java', 'nothing')"> Java </a>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('php', 'nothing')"> PHP </a>
+            </div>
+            <div class = "col-sm-6 col-md-4 col-lg-3">
+               <a class = "btn btn-primary btn-block" onclick = "fillForm ('docker', 'nothing')"> Docker </a>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div>
+            <div>
+               <hr>
+               <div>
+                  <div style="background-color:#a4cfbe" class="text-center">
+                     <p>Some popular roadmaps (cooking):</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+               <a class="btn btn-primary btn-block" style="background-color:#00adb5" onclick="fillForm('python', 'nothing')" style="background-color:#00adb5">Pasta</a>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+               <a class="btn btn-primary btn-block" onclick="fillForm('pizza', 'nothing')">Pizza</a>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+               <a class="btn btn-primary btn-block" onclick="fillForm('tacos', 'nothing')">Tacos</a>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+               <a class="btn btn-primary btn-block" onclick="fillForm('sushi', 'nothing')">Sushi</a>
+            </div>
+         </div>
+      </div>
+      <div class="container">
+         <div>
+            <div>
+               <hr>
+               <div>
+                  <div style="background-color:#a4cfbe" class="text-center">
+                     <p>Some popular roadmaps (sports):</p>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="col-sm-6 col-md-4 col-lg-3">
+               <a class="btn btn-primary btn-block" style="background-color:#00adb5" onclick="fillForm('football', 'nothing')" style="background-color:#00adb5" onclick="fillForm('python', 'nothing')">Football</a>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+               <a class="btn btn-primary btn-block" onclick="fillForm('tennis', 'nothing')">Tennis</a>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+               <a class="btn btn-primary btn-block" onclick="fillForm('volleyball', 'nothing')">Volleyball</a>
+            </div>
+            <div class="col-sm-6 col-md-4 col-lg-3">
+               <a class="btn btn-primary btn-block" onclick="fillForm('golf', 'nothing')">Golf</a>
+            </div>
+         </div>
+      </div>
+      <hr style="border-top: 2px solid #ccc">
+      {% include "footer.html" %}
+      <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNS3hpf" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+      <script>
+         function fillForm(word1, word2) {
+           document.getElementById('word1').value = word1;
+           document.getElementById('word2').value = word2;
+           document.querySelector('form').submit();
+         }
+      </script>
+   </body>
+</html>
